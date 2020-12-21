@@ -15,7 +15,7 @@ class RTTLogWriter {
  public:
   bool open(const QString& filename);
   void close();
-  bool writeMessage(const proto::State& state, long long int timestamp);
+  bool writeMessage(const proto::State& message, long long int timestamp);
  private:
   std::unique_ptr<std::ofstream> file_stream;
 };
