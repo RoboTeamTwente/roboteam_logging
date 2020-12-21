@@ -17,7 +17,7 @@ class RTTLogWriter {
   void close();
   bool writeMessage(const proto::State& message, long long int timestamp);
  private:
-  std::unique_ptr<std::ofstream> file_stream;
+ std::ofstream * file_stream;
 };
 
 #endif //RTT_ROBOTEAM_LOGGING_SRC_RTTLOGWRITER_H_

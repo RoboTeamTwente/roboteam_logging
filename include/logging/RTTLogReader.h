@@ -17,14 +17,23 @@ struct RTTLogMessage{
 class RTTLogReader {
  public:
   bool open(const QString& file_name);
+  void close();
   RTTLogMessage readNext();
-  void placePosition(int packetNumber);
+  RTTLogMessage readPrevious();
   RTTLogMessage readPacket(int packetNumber);
+  int numberPackets() const;
+  int currentPacket() const; //returns the nr of last packet sent
+  long long int startingTime() const;
+  long long int endingTime() const;
  private:
+  void placePosition(int packetNumber);
   bool indexFile();
-  std::unique_ptr<std::ifstream> file_in_stream;
+  std::ifstream * file_in_stream;
   std::unordered_map<int,long> file_index;
   long startPosition;
+  long long int startTime;
+  long long int endTime;
+  int currentPacketNr;
 };
 
 #endif //RTT_ROBOTEAM_LOGGING_SRC_RTTLOGREADER_H_

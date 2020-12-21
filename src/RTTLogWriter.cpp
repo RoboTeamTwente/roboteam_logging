@@ -8,7 +8,7 @@
 bool RTTLogWriter::open(const QString &filename) {
   QByteArray fileNameBytes = filename.toUtf8();
   const char * file_name_chars = fileNameBytes.constData();
-  file_stream = std::make_unique<std::ofstream>(std::ofstream(file_name_chars,std::ios_base::out | std::ios_base::binary));
+  file_stream = new std::ofstream(std::ofstream(file_name_chars,std::ios_base::out | std::ios_base::binary));
   if(!file_stream->is_open()){
     std::cerr<<"Error opening log file \""<< file_name_chars<<"\"!"<<std::endl;
     return false;
